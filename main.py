@@ -33,6 +33,10 @@ def main():
     script_dir = Path(__file__).resolve().parent
     source = script_dir / "entry.png"
 
+    if not source.is_file():
+        print(f"error: {source} not found", file=sys.stderr)
+        sys.exit(1)
+
     output_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
     output_dir.mkdir(parents=True, exist_ok=True)
     destination = output_dir / "entry.png"
